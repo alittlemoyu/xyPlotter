@@ -9,6 +9,10 @@ void KBInterruption(){
     LineCreationFSA();
     
   }
-  else if(){}
+  else if(ArcCreationProcedure == true){
+  
+    ArcCreationFSA();
+  
+  }
   else{}
 }

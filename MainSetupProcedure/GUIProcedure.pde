@@ -9,16 +9,21 @@ void NumPad(){
   textSize(20);
   fill(51);
   for(int count = 0; count <= InputXAxis.size()-1;count++){
-    data = str(count + 1) + "  X " + str(InputXAxis.get(count));
+    data = str(count) + "  X " + str(InputXAxis.get(count));
     text(data,initial_indentation,line);
     line += line_spacing;
     data = "";
   } 
   
-  if (EOI){
+  if (EOI & EOLC == false){
     fill(255,0,0);
     text("Input Finished.ENTER to start LineCreation.",initial_indentation,line);
     noLoop();
+  }
+  
+  if(EOLC){
+    fill(255,0,0);
+    text("LCProcedure finished. Enter to start ArcCreation",initial_indentation,line);
   }
   
   line = 120;

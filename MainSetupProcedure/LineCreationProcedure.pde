@@ -15,14 +15,18 @@ void LineCreationFSA(){
     }
     else{
       InputLCBuffer.remove(InputLCBuffer.size()-1);
+      No_buffer = "";
     }
   }
   else if(key == 'E'){
     PairCount = 0;
+    EOLC = true;
     pointPair = new LinePointPair[LCPairCount];
     for (int count = 0; count <= LCPairCount-1; count++){
       pointPair[count] = new LinePointPair(InputLCBuffer.get(count*2),InputLCBuffer.get(count*2+1));
     }
   }
-  else {}
+  else if((key == ENTER || key == RETURN) & EOLC){
+    ArcCreation();
+  }
 }

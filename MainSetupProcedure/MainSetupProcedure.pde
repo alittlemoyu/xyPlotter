@@ -1,13 +1,16 @@
 float num = 0;
-int LCPairCount = 0;
+int LCPairCount,ACPairCount = 0;
 String No_buffer="";
 String str_num = "";
 FloatList InputXAxis,InputYAxis;
 char point = 'x';
 boolean EOI = false;
-IntList InputLCBuffer;
+boolean EOLC = false;
+boolean EOAC = false;
+IntList InputLCBuffer,InputACBuffer;
 int PairCount = 0;
 LinePointPair[] pointPair;
+CircleAxis[] circleAxis;
 
 void setup(){
   size(1900,1000);
@@ -15,6 +18,7 @@ void setup(){
   InputXAxis = new FloatList();
   InputYAxis = new FloatList();
   InputLCBuffer = new IntList();
+  InputACBuffer = new IntList();
 }
 
 void draw(){
@@ -33,5 +37,5 @@ void draw(){
 }
 
 void keyPressed(){
-  KBInterruption(); //<>// //<>//
+  KBInterruption(); //<>//
 }
