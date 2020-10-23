@@ -1,21 +1,21 @@
-boolean LineCreationProcedure = false;
-
 void LineCreation(){
   LineCreationProcedure = true;
+  println("Jump out to LineCreation");
 }
 
 class LinePointPair{
   
-  int XNo;
-  int YNo;
+  int ANo;
+  int BNo;
   
-  LinePointPair(int XNo,int YNo){
-    this.XNo = XNo;
-    this.YNo = YNo;
+  LinePointPair(int ANo,int BNo){
+    this.ANo = ANo;
+    this.BNo = BNo;
   }
   
   void drawLine(){
-    line(InputXAxis.get(XNo-1),InputYAxis.get(XNo-1),InputXAxis.get(YNo-1),InputYAxis.get(YNo-1));
+    stroke(0);
+    line(DispXAxis.get(ANo),DispYAxis.get(ANo),DispXAxis.get(BNo),DispYAxis.get(BNo));
   }
   
 }

@@ -1,12 +1,8 @@
-String words1 = "Preview on the A4 paper";
-String words2 = "The data you input";int indentation = 90;
-int line_spacing = 30;
-String data = "";
-
-void NumPad(){
-  int initial_indentation = 1370;
-  int line = 120;
+public void NumPad(){
+  initial_indentation = 1270;
+  line = 30;
   textSize(20);
+  translate(-1200,0);
   fill(51);
   for(int count = 0; count <= InputXAxis.size()-1;count++){
     data = str(count) + "  X " + str(InputXAxis.get(count));
@@ -15,19 +11,24 @@ void NumPad(){
     data = "";
   } 
   
-  if (EOI & EOLC == false){
+  if (EOI && (EOLC == false)){
     fill(255,0,0);
     text("Input Finished.ENTER to start LineCreation.",initial_indentation,line);
-    noLoop();
   }
   
-  if(EOLC){
+  if(EOLC && (EOAC == false)){
     fill(255,0,0);
     text("LCProcedure finished. Enter to start ArcCreation",initial_indentation,line);
   }
   
-  line = 120;
+  if(EOAC){
+    fill(255,0,0);
+    text("ArcCreation finished. Enter to start Print",initial_indentation,line);
+  }
+  
+  line = 30;
   fill(51);
+  
   for(int count = 0; count <= InputYAxis.size()-1;count++){
     data = "Y " + str(InputYAxis.get(count));
     text(data,initial_indentation + indentation,line);
@@ -36,18 +37,36 @@ void NumPad(){
   }
 }
 
-void GraphicsPad(){
+public void GraphicsPad(){
   if (InputYAxis.size() >= 1){
     for(int count = 0; count <= InputYAxis.size()-1;count++){
       stroke(0);
-      point(100+4*InputYAxis.get(count),80+4*InputXAxis.get(count));
+      point(DispXAxis.get(count),DispYAxis.get(count));
     }
   }
 }
 
-void DrawLine(){
+public void DispAxis(){
+  DispXAxis.clear();
+  DispYAxis.clear();
+  for(int count = 0;count < InputYAxis.size();count++){
+    DispXAxis.append(30+4*InputYAxis.get(count));  
+    DispYAxis.append(120+4*InputXAxis.get(count));
+  }
+}
+
+public void LCNumPair(){
+  
+}
+
+public void DrawLine(){
   for (int count = 0; count <= LCPairCount-1; count++){
-    stroke(0);
     pointPair[count].drawLine();
+  }
+}
+
+public void DrawArc(){
+  for (int count = 0; count <= ACPairCount-1; count++){
+    circleAxis[count].arcPrinter();
   }
 }

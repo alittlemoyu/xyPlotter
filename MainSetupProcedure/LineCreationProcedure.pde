@@ -6,7 +6,7 @@ void LineCreationFSA(){
     InputLCBuffer.append(int(No_buffer));
     No_buffer = "";
   }
-  else if(key == ENTER || key == RETURN){
+  else if((key == ENTER || key == RETURN)&& EOLC == false){
     if (InputLCBuffer.size() % 2 == 1){
       InputLCBuffer.append(int(No_buffer));
       No_buffer = "";
@@ -19,14 +19,15 @@ void LineCreationFSA(){
     }
   }
   else if(key == 'E'){
-    PairCount = 0;
     EOLC = true;
     pointPair = new LinePointPair[LCPairCount];
     for (int count = 0; count <= LCPairCount-1; count++){
       pointPair[count] = new LinePointPair(InputLCBuffer.get(count*2),InputLCBuffer.get(count*2+1));
     }
+    println("Line input fininsed");
   }
-  else if((key == ENTER || key == RETURN) & EOLC){
+  else if((key == ENTER || key == RETURN) && EOLC){
     ArcCreation();
+    println("Arc input started");
   }
 }

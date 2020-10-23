@@ -7,13 +7,12 @@ void DataInputFSA(){
     EOI = true;
   }
   else if ((key == ENTER || key == RETURN) && EOI == false){
-    num = float( str_num );
-    println(num);
-    str_num = "";
-    noLoop();
+    if(key != ' '){
+      num = float( str_num );
+      str_num = "";
+    }
   }
-  else if((key == ENTER || key == RETURN) && EOI == true){
-    noLoop();
+  else if((key == ENTER || key == RETURN) && EOI){
     LineCreation();
   }
   else{}
@@ -24,13 +23,13 @@ void DataInputFSA(){
       InputXAxis.append(num);
       println('X',InputXAxis.get(InputXAxis.size()-1));
       num = 0;
-      loop();
+      point = ' ';
     }
     if(point == 'y'){
       InputYAxis.append(num);
       println('Y',InputYAxis.get(InputYAxis.size()-1));
       num = 0;
-      loop();
+      point = ' ';
     }
     if(point == 'a'){
       InputXAxis.append(num);
@@ -39,7 +38,7 @@ void DataInputFSA(){
       }
       println('X',InputXAxis.get(InputXAxis.size()-1));
       num = 0;
-      loop();
+      point = ' ';
     }
     if(point == 'b'){
       InputYAxis.append(num);
@@ -48,7 +47,7 @@ void DataInputFSA(){
       }
       println('Y',InputYAxis.get(InputYAxis.size()-1));
       num = 0;
-      loop();
+      point = ' ';
     }
     
   }
