@@ -1,12 +1,9 @@
-void KBInterruption(){
-  if((LineCreationProcedure == false) && ArcCreationProcedure == false){
+void KBInterruption() {
+  if ((LineCreationProcedure == false) && ArcCreationProcedure == false) {
     DataInputFSA();
-  }
-  else if(LineCreationProcedure == true){
+  } else if (LineCreationProcedure == true) {
     LineCreationFSA();
-  }
-  else if(ArcCreationProcedure == true){
+  } else if (ArcCreationProcedure == true) {
     ArcCreationFSA();
   }
-  else{loop();}
 }

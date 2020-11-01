@@ -1,14 +1,16 @@
+import processing.serial.*;
 float num = 0;
 float arcPrecession = 0.1;
-int LCPairCount,ACPairCount = 0;
+int LCPairCount, ACPairCount = 0;
 String No_buffer="";
 String str_num = "";
-FloatList InputXAxis,InputYAxis,DispXAxis,DispYAxis;
+FloatList InputXAxis, InputYAxis, DispXAxis, DispYAxis;
 char point = 'x';
 boolean EOI = false;
 boolean EOLC = false;
 boolean EOAC = false;
-IntList InputLCBuffer,InputACBuffer;
+boolean SetupDone = false;
+IntList InputLCBuffer, InputACBuffer;
 int PairCount = 0;
 LinePointPair[] pointPair;
 CircleAxis[] circleAxis;
@@ -21,8 +23,17 @@ int line_spacing = 30;
 String data = "";
 int initial_indentation = 1270;
 int line = 30;
+boolean contactEstablished = false;
+boolean pushFinished = false;
+boolean EOLS = false;
+boolean EOAS = false;
+Serial myPort;
+String SerialVal;
+char inByte;
+int serialPushCount = 0;
 
-public void setup(){
+
+public void setup() {
   textFont(createFont("CALIBRI.TTF", 36));
   //size(1920,1080);
   fullScreen();
@@ -32,32 +43,39 @@ public void setup(){
   DispYAxis = new FloatList();
   InputLCBuffer = new IntList();
   InputACBuffer = new IntList();
+  myPort = new Serial(this, "COM4", 115200);
+  myPort.buffer(1);
 }
 
-public void draw(){
-  background(125,125,125);
+public void draw() {
+  background(125, 125, 125);
   noStroke();
-  fill(255,255,255);
+  fill(255, 255, 255);
   textSize(45);
   text(words1, 30, 60);
-  translate(30,120);
-  rect(0,0,1188,840);
-  translate(1170,-120);
-  fill(254,253,225);
-  rect(50,0,600,height);
+  translate(30, 120);
+  rect(0, 0, 1188, 840);
+  translate(1170, -120);
+  fill(254, 253, 225);
+  rect(50, 0, 600, height);
   rotate(HALF_PI);
   fill(255);
   textSize(36);
-  text(words2,20,-675);
+  text(words2, 20, -675);
   rotate(-HALF_PI);
   DispAxis();
   NumPad();
   GraphicsPad();
   LCNumPair();
-  if (EOLC){DrawLine();}
-  if (EOAC){DrawArc();}
+  if (EOLC) DrawLine();
+  if (EOAC) DrawArc();
+  if (SetupDone) myPort.write('1');
 }
 
-public void keyPressed(){
+public void keyPressed() {
   KBInterruption();
+}
+
+void serialEvent(Serial myPort) {
+  serialInterruption(myPort);
 }
