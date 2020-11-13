@@ -53,15 +53,29 @@ public void DispAxis() {
     DispXAxis.append(30+4*InputYAxis.get(count));  
     DispYAxis.append(120+4*InputXAxis.get(count));
   }
+  DispAxisIsCount = true;
 }
 
 public void LCNumPair() {
+}
+
+void DrawLineTemp(){
+    for (int count = 0; count <= LCPairCount-1; count++) {
+      //Draw lines temporary.
+      line(DispXAxis.get(InputLCBuffer.get(count*2)),DispYAxis.get(InputLCBuffer.get(count*2)),DispXAxis.get(InputLCBuffer.get(count*2+1)),DispYAxis.get(InputLCBuffer.get(count*2+1)));
+    }
+}
+
+void pointEmphasize(){
+  //Point selected emphasizing
+  
 }
 
 public void DrawLine() {
   for (int count = 0; count <= LCPairCount-1; count++) {
     pointPair[count].drawLine();
   }
+  
 }
 
 public void DrawArc() {

@@ -31,6 +31,11 @@ Serial myPort;
 String SerialVal;
 char inByte;
 int serialPushCount = 0;
+boolean needDrawLineTemp = true;
+boolean needPointEmphasis = false;
+int minno;
+//boolean 紙片人好看 = true；
+boolean DispAxisIsCount = false;
 
 
 public void setup() {
@@ -63,17 +68,28 @@ public void draw() {
   textSize(36);
   text(words2, 20, -675);
   rotate(-HALF_PI);
-  DispAxis();
+  if (DispAxisIsCount == false){
+    DispAxis();
+  }
   NumPad();
   GraphicsPad();
   LCNumPair();
-  if (EOLC) DrawLine();
+  if (EOLC) {
+    DrawLine();
+    needDrawLineTemp = false;
+  }
+  if (needDrawLineTemp){
+    DrawLineTemp();
+  }
   if (EOAC) DrawArc();
-  if (SetupDone) myPort.write('1');
 }
 
 public void keyPressed() {
   KBInterruption();
+}
+
+void mousePressed(){
+  MInterruption();
 }
 
 void serialEvent(Serial myPort) {

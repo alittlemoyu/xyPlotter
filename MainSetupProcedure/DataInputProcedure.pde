@@ -1,4 +1,4 @@
-void DataInputFSA() {
+void DataInputKBFSA() {
   if (key == 'X') {
     point = 'x';
   } else if (key == 'Y') {
@@ -55,5 +55,16 @@ void DataInputFSA() {
 
   if ( (key >= '0' && key <= '9' ) || key == '.') {
     str_num += key;
+  }
+}
+
+void DataInputMFSA(){
+  if(mouseButton == LEFT){
+    InputXAxis.append(mouseX);
+    InputYAxis.append(mouseY);
+  }
+  else{
+    InputXAxis.remove(InputXAxis.size()-1);
+    InputYAxis.remove(InputYAxis.size()-1);
   }
 }

@@ -1,4 +1,4 @@
-void ArcCreationFSA() {
+void ArcCreationKBFSA() {
   PairCount = 0; 
   if (key >= '0' && key <= '9') {
     No_buffer += key;
@@ -40,5 +40,6 @@ void ArcCreationFSA() {
     println("Arc input fininsed");
   } else if ((key == ENTER || key == RETURN) && EOAC) {
     SetupDone = true;
+    myPort.write('1');
   }
 }

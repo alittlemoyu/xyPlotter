@@ -1,4 +1,4 @@
-void ArcCreation() { //<>// //<>//
+void ArcCreation() { //<>//
   LineCreationProcedure = false;
   ArcCreationProcedure = true;
   println("Jump out to ArcCreation");
